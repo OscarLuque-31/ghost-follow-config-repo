@@ -1,20 +1,17 @@
 server:
-  port: 8081 # Puerto 8081 para evitar conflicto con el Gateway (8080)
+  port: 8081
 spring:
   application:
     name: collector-service
 
-  # Configuración del Productor de Kafka
   kafka:
     producer:
       bootstrap-servers: localhost:9092
       key-serializer: org.apache.kafka.common.serialization.StringSerializer
-      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer # Enviará la lista de seguidores como JSON
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
       properties:
-        # Permite que la aplicación serialice objetos personalizados a JSON
         spring.json.add.type.headers: false
 
-# Configuración de Cliente Eureka (para registrarse)
 eureka:
   client:
     serviceUrl:

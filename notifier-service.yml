@@ -1,15 +1,14 @@
 server:
-  port: 8083 # Puerto único para este servicio
+  port: 8083
 
 spring:
   application:
-    name: notifier-service # Clave para Eureka
+    name: notifier-service
 
-  # Configuración de Kafka (Consumidor de Eventos de Cambio)
   kafka:
     consumer:
       bootstrap-servers: localhost:9092
-      group-id: notifier-group # ID de grupo diferente al del processor
+      group-id: notifier-group
       auto-offset-reset: earliest
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
       value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
@@ -17,7 +16,6 @@ spring:
         spring.json.trusted.packages: "*"
         spring.json.value.default.type: com.ghostfollow.processor_service.model.FollowerChangeEvent
 
-  # Configuración de Correo Electrónico (Spring Mail)
   mail:
     host: smtp.gmail.com
     port: 587
@@ -27,8 +25,10 @@ spring:
       mail.smtp.auth: true
       mail.smtp.starttls.enable: true
 
-# Configuración de Cliente Eureka
 eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
+  instance:
+    appname: notifier-service
+    instance-id: ${spring.application.name}:${server.port}
