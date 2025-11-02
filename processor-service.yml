@@ -37,6 +37,3 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://localhost:8761/eureka/
-  instance:
-    appname: processor-service
-    instance-id: ${spring.application.name}:${server.port}
