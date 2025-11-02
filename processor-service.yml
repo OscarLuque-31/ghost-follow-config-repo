@@ -1,4 +1,7 @@
 spring:
+  application:
+    name: processor-service
+
   datasource:
     url: jdbc:postgresql://localhost:5433/processor_db
     username: springuser
